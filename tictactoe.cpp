@@ -8,7 +8,6 @@
 void playTicTacToe();
 
 int main() {
-	std::cout << "Would you like to play TicTacToe?\n";
 	while (true) {
 		playTicTacToe();
 		std::cout << "Would you like to play again? (y/n)\n";
@@ -18,9 +17,8 @@ int main() {
 			std::cout << "Please enter a valid value.\n";
 			std::cin >> c;
 		}
-		if (c == 'n') {
+		if (c == 'n')
 			break;
-		}
 	}
 	return 0;
 }
@@ -34,9 +32,8 @@ void playTicTacToe()
 		if (Game->num_players == 1) {
 			if (Game->first_player_turn) Game->humanMove();
 			else Game->computerMove();
-		} else {
+		} else
 			Game->humanMove();
-		}
 		Game->drawBoard();
 		if (Game->hasWon()) {
 			std::cout << "Winner is " << Game->hasWon() << "\n";
@@ -48,19 +45,21 @@ void playTicTacToe()
 
 TicTacToe::TicTacToe()
 {
-	map = " XO";
 	size = 0;
 	first_player_turn = true;
-
+	map = " XO";
 	for (int i = 0; i < 9; i++)
 		board[i] = 0;
 
+	// Decide the number of human players
 	std::cout << "How many players? (1 or 2)\n";
 	std::cin >> num_players;
 	while (num_players > 2 || num_players < 1) {
 		std::cout << "Please enter a valid value.\n";
 		std::cin >> num_players;
 	}
+
+	// Decide if human wants to do first
 	if (num_players == 1) {
 		char c;
 		std::cout << "Would you like to go first? (y/n)\n";
@@ -69,9 +68,8 @@ TicTacToe::TicTacToe()
 			std::cout << "Please enter a valid value.\n";
 			std::cin >> c;
 		}
-		if (c == 'n') {
+		if (c == 'n')
 			first_player_turn = false;
-		}
 	}
 }
 
